@@ -1,0 +1,37 @@
+# Render 部署配置文件
+# 注意：此文件为可选，你也可以通过 Render Dashboard 手动配置
+
+services:
+  - type: web
+    name: ecommerce-backend
+    runtime: docker
+    plan: starter  # 或 free, starter, standard 等
+    region: singapore  # 或 frankfurt, oregon 等
+    buildCommand: ""  # Docker 构建，无需额外命令
+    startCommand: ""  # 使用 Dockerfile 中的 ENTRYPOINT
+    envVars:
+      # 必需的环境变量 - 在 Render Dashboard 中设置这些值
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        sync: false  # 需要手动设置数据库连接字符串
+      - key: JWT_SECRET
+        sync: false  # 需要手动设置 JWT 密钥
+      - key: STRIPE_SECRET_KEY
+        sync: false  # 需要手动设置 Stripe 密钥
+      - key: STRIPE_WEBHOOK_SECRET_KEY
+        sync: false  # 需要手动设置 Stripe Webhook 密钥
+      - key: PORT
+        fromService:
+          type: web
+          name: ecommerce-backend
+          property: port
+    healthCheckPath: /actuator/health  # 如果启用了 actuator，否则使用根路径 /
+
+databases:
+  - name: ecommerce-db
+    databaseName: store_api
+    user: store_user
+    plan: starter  # 或 free, starter 等
+    region: singapore  # 应与 web 服务在同一区域
+

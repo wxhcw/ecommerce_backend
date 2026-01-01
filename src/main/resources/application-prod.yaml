@@ -1,6 +1,15 @@
 spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME:}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
 server:
-    port: ${PORT:8080}
-websiteUrl: https://mystore.com
+  port: ${PORT:8080}
+websiteUrl: ${WEBSITE_URL:https://mystore.com}
