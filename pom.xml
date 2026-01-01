@@ -48,9 +48,11 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <groupId>org.springframework.boot</groupId>
         </dependency>
+
+        <!-- PostgreSQL 数据库驱动 (替换 MySQL) -->
         <dependency>
-            <artifactId>mysql-connector-j</artifactId>
-            <groupId>com.mysql</groupId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -58,8 +60,8 @@
             <groupId>org.flywaydb</groupId>
         </dependency>
         <dependency>
-            <artifactId>flyway-mysql</artifactId>
             <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
         </dependency>
         <dependency>
             <artifactId>lombok</artifactId>
@@ -151,14 +153,15 @@
                 </configuration>
             </plugin>
 
+            <!-- Flyway Maven Plugin - 本地开发用 PostgreSQL -->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>10.15.0</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/store_api?createDatabaseIfNotExist=true</url>
-                    <user>root</user>
-                    <password>MyPassword!</password>
+                    <url>jdbc:postgresql://localhost:5432/store_api</url>
+                    <user>postgres</user>
+                    <password>postgres</password>
                     <cleanDisabled>false</cleanDisabled>
                 </configuration>
             </plugin>

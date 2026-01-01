@@ -32,6 +32,6 @@ databases:
   - name: ecommerce-db
     databaseName: store_api
     user: store_user
-    plan: starter  # 或 free, starter 等
+    plan: free  # 或 free, starter 等
     region: singapore  # 应与 web 服务在同一区域
 
