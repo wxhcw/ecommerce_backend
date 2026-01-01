@@ -6,7 +6,7 @@ services:
     name: ecommerce-backend
     runtime: docker
     plan: free  # 或 starter/standard/pro 根据需求选择
-    region: oregon  # 选择你偏好的区域
+    region: Singapore  # 选择你偏好的区域
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
@@ -26,4 +26,5 @@ services:
         plan: free  # 或 starter/standard/pro 根据需求选择
         databaseName: store_api
         user: postgres
+        region: Singapore
 
