@@ -19,11 +19,12 @@ CREATE TABLE categories
 CREATE TABLE products
 (
     id          BIGSERIAL NOT NULL,
-    name        VARCHAR(255)   NOT NULL,
+    name        VARCHAR(255)   NOT NULL UNIQUE,
     price       DECIMAL(10, 2) NOT NULL,
     description TEXT           NOT NULL,
     category_id SMALLINT NULL,
-    CONSTRAINT products_pkey PRIMARY KEY (id)
+    CONSTRAINT products_pkey PRIMARY KEY (id),
+    image_url VARCHAR(500) NOT NULL DEFAULT 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D'
 );
 
 CREATE TABLE users
